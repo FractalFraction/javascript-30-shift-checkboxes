@@ -16,3 +16,4 @@ Reflections
 
 Next Steps
 - Add functionality that allows the user to deselect multiple checkboxes
+- Put styles and scripts in their own files
