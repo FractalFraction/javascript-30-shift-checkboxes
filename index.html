@@ -75,29 +75,126 @@
   <div>
     <ul id="todos">
       <li>       
-          <input type="checkbox" name="todo-1" id="todo-1">
+          <input type="checkbox" name="todo-0" id="todo-0">
           <span class="checkmark"></span>
           <label for="todo-1">Buy Groceries</label>
       </li>
       <li>
-        <input type="checkbox" name="todo-2" id="todo-2">
+        <input type="checkbox" name="todo-1" id="todo-1">
         <span class="checkmark"></span>
         <label for="todo-1">Wash Clothes</label>
       </li>
       <li>
-        <input type="checkbox" name="todo-3" id="todo-3">
+        <input type="checkbox" name="todo-2" id="todo-2">
         <span class="checkmark"></span>
         <label for="todo-1">Clean Room</label>
       </li>
       <li>
-        <input type="checkbox" name="todo-4" id="todo-4">
+        <input type="checkbox" name="todo-3" id="todo-3">
         <span class="checkmark"></span>
         <label for="todo-1">Cook Dinner</label>
       </li>
       <li data-children-count="1">
-        <input type="checkbox" name="todo-5" id="todo-5">
+        <input type="checkbox" name="todo-4" id="todo-4">
         <span class="checkmark"></span>
         <label for="todo-1">Study</label>
       </li>
     </ul>
   </div>
+  </body>
+  <script>
+    const inputs = document.querySelectorAll('input');
+    const labels = document.querySelectorAll('label')
+
+    let isMulitpleChecks = false;
+    let getInputsChecked;
+
+    let firstChecked;
+    let lastChecked;
+    let inputsToChange;
+
+    // Helper Functions
+    function checkmarkToggle(bool = false, index){
+      if (bool){
+          // Make associated label text have struckthrough text
+          labels[index].style.textDecoration = 'line-through';
+          lastChecked = index;
+        } else {
+          // Make associated label have text decoration set to normal
+          labels[index].style.textDecoration = 'none';
+        }
+    }
+
+    // Callback Functions
+    function enableMulitpleChecks(){
+      return function(e){
+        if (e.keyCode === 16){
+          isMulitpleChecks = true;
+        }
+      }
+    }
+
+    function disableMultipleChecks(){
+      return function(e){
+        if(e.keyCode === 16){
+          isMulitpleChecks = false;
+        }
+      }
+    }
+
+    // Figure out the current checkbox index that has been clicked
+
+    
+    // Look at the largest checkbox index that has been clicked from getInputsChecked
+    
+
+    
+    // See if the current checkbox index is smaller or larger that the min and max of the checked tickboxes
+    
+
+    // I want a function that when I click a checkbox it will check the checkboxes of all inputs 
+    // above that element!
+
+    // Checkboxes
+    inputs.forEach((input, index) => {
+      input.addEventListener('click', function(){
+        console.log(`${input.name} was clicked!`);
+        // Toggles the checking
+        checkmarkToggle(this.checked, index)
+        // Do something if isMultipleChecks is true and another 
+        // input has been checked
+        if (isMulitpleChecks){
+          console.log("Performing multiple checking!");
+
+          getInputsChecked = Array.from(inputs).map(inputToBe => inputToBe.checked);
+          console.log({getInputsChecked})
+
+          firstChecked = getInputsChecked.indexOf(true)
+
+          // Inputs to change
+          inputsToChange = Array.from(inputs).slice(firstChecked + 1, lastChecked)
+
+          inputsToChange.forEach(input => input.checked = true)
+
+          console.log(inputsToChange)
+
+          console.log({firstChecked})
+          console.log({lastChecked})
+
+
+        } else {
+          console.log("Sorry, you need to have the shift key held down");
+        }
+
+        // Do another thing if isMultipleChecks is false
+        // i.e default behaviour
+
+      });
+    });
+
+    // Keypress
+    document.addEventListener('keydown', enableMulitpleChecks())
+    document.addEventListener('keyup', disableMultipleChecks())
+
+  </script>
+</html>
