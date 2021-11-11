@@ -114,7 +114,7 @@
     let inputsToChange;
 
     // Helper Functions
-    function checkmarkToggle(bool = false, index){
+    function setLabelStrikethrough(bool = false, index){
       if (bool){
           // Make associated label text have struckthrough text
           labels[index].style.textDecoration = 'line-through';
@@ -124,7 +124,32 @@
         }
     }
 
-    // Callback Functions
+    function getInputsToChange(inputs, lastChecked, currentChecked){
+      return lastChecked < currentChecked ? 
+        Array.from(inputs).slice(lastChecked + 1, currentChecked) :
+        Array.from(inputs).slice(currentChecked + 1, lastChecked) ;
+    }
+
+    function setChecks(inputs, lastChecked, currentChecked){
+      inputsToChange = getInputsToChange(inputs, lastChecked, currentChecked);
+      inputsToChange.forEach(input => {
+            input.checked = true
+      })
+    }
+
+    // Callback Functions          console.log("Performing multiple checking!");
+    function handleChecks(input, index){
+      return function(){
+        // Toggles the checking
+       setLabelStrikethrough(input.checked, index);
+        if (isMulitpleChecks){
+          setChecks(inputs,lastChecked,index);
+        } 
+        lastChecked = index;
+      };
+    }
+    
+    
     function enableMulitpleChecks(){
       return function(e){
         if (e.keyCode === 16){
@@ -156,41 +181,11 @@
 
     // Checkboxes
     inputs.forEach((input, index) => {
-      input.addEventListener('click', function(){
-        // Toggles the checking
-        checkmarkToggle(this.checked, index)
-        // Do something if isMultipleChecks is true and another 
-        // input has been checked
-        if (isMulitpleChecks){
-          console.log("Performing multiple checking!");
-
-          getInputsChecked = Array.from(inputs).map(inputToBe => inputToBe.checked);
-          console.log({getInputsChecked})
-
-          //firstChecked = getInputsChecked.indexOf(true)
-
-          console.log(index)
-
-          // Inputs to change
-
-          if (lastChecked < index){
-            inputsToChange = Array.from(inputs).slice(lastChecked + 1, index)
-          } else {
-            inputsToChange = Array.from(inputs).slice(index + 1, lastChecked)
-          }
-
-          //inputsToChange = Array.from(inputs).slice(firstChecked + 1, lastChecked)
-
-          inputsToChange.forEach(input => input.checked = true)
-
-        } 
-        lastChecked = index;
-      });
+      input.addEventListener('click', handleChecks(input, index))
     });
-
     // Keypress
-    document.addEventListener('keydown', enableMulitpleChecks())
-    document.addEventListener('keyup', disableMultipleChecks())
+    document.addEventListener('keydown', enableMulitpleChecks());
+    document.addEventListener('keyup', disableMultipleChecks());
 
   </script>
 </html>
