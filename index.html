@@ -45,17 +45,9 @@
   }
 
   input {
-    padding: 0px;
+    -webkit-appearance: none;
+    appearance: none;
     margin: 0;
-    /* opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0; */ */
-    visibility: hidden;
-  }
-
-  .checkmark {
-    margin-left: -8px;
     margin-right: 8px;
     height: 18px;
     width: 18px;
@@ -65,7 +57,7 @@
     box-shadow: 1px 1px #F765B8;
   }
 
-  input:checked ~ .checkmark {
+  input:checked {
     background-color: #27FDF5;
   }
 
@@ -76,27 +68,22 @@
     <ul id="todos">
       <li>       
           <input type="checkbox" name="todo-0" id="todo-0">
-          <span class="checkmark"></span>
           <label for="todo-1">Buy Groceries</label>
       </li>
       <li>
         <input type="checkbox" name="todo-1" id="todo-1">
-        <span class="checkmark"></span>
         <label for="todo-1">Wash Clothes</label>
       </li>
       <li>
         <input type="checkbox" name="todo-2" id="todo-2">
-        <span class="checkmark"></span>
         <label for="todo-1">Clean Room</label>
       </li>
       <li>
         <input type="checkbox" name="todo-3" id="todo-3">
-        <span class="checkmark"></span>
         <label for="todo-1">Cook Dinner</label>
       </li>
       <li data-children-count="1">
         <input type="checkbox" name="todo-4" id="todo-4">
-        <span class="checkmark"></span>
         <label for="todo-1">Study</label>
       </li>
     </ul>
