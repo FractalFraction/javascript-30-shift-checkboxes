@@ -107,7 +107,6 @@
     const labels = document.querySelectorAll('label')
 
     let isMulitpleChecks = false;
-    let getInputsChecked;
 
     let firstChecked;
     let lastChecked;
@@ -132,8 +131,9 @@
 
     function setChecks(inputs, lastChecked, currentChecked){
       inputsToChange = getInputsToChange(inputs, lastChecked, currentChecked);
-      inputsToChange.forEach(input => {
+      inputsToChange.forEach((input, index) => {
             input.checked = true
+            setLabelStrikethrough(true, Math.min(lastChecked, currentChecked) + 1 + index)
       })
     }
 
@@ -148,7 +148,6 @@
         lastChecked = index;
       };
     }
-    
     
     function enableMulitpleChecks(){
       return function(e){
@@ -165,19 +164,6 @@
         }
       }
     }
-
-    // Figure out the current checkbox index that has been clicked
-
-    
-    // Look at the largest checkbox index that has been clicked from getInputsChecked
-    
-
-    
-    // See if the current checkbox index is smaller or larger that the min and max of the checked tickboxes
-    
-
-    // I want a function that when I click a checkbox it will check the checkboxes of all inputs 
-    // above that element!
 
     // Checkboxes
     inputs.forEach((input, index) => {
