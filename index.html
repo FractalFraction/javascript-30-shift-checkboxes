@@ -1,0 +1,75 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<style>
+  body {
+    background-color: #F98DC9;
+    font-size: 32px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  div {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 25px;
+    background-color: #F765B8;
+    padding: 16px 64px 16px 32px;
+    border: 1px solid #A8F6F8;
+    box-shadow: 10px 10px #27FDF5;
+  }
+
+  li {
+    display: flex;
+    justify-content: center;
+    gap: 0px 16px;
+    list-style-type: none;
+    background-color: #F98DC9;
+    padding: 8px 16px 8px 8px;
+  }
+
+  label {
+    color: #27FDF5;
+    text-shadow: 2px 2px #F765B8;
+  }
+
+  input {
+    padding: 8px;
+  }
+</style></head>
+
+<body>
+  <div>
+    <ul id="todos">
+      <li>       
+          <input type="checkbox" name="todo-1" id="todo-1">
+          <label for="todo-1">Buy Groceries</label>
+      </li>
+      <li>
+        <input type="checkbox" name="todo-2" id="todo-2">
+        <label for="todo-1">Wash Clothes</label>
+      </li>
+      <li>
+        <input type="checkbox" name="todo-3" id="todo-3">
+        <label for="todo-1">Clean Room</label>
+      </li>
+      <li>
+        <input type="checkbox" name="todo-4" id="todo-4">
+        <label for="todo-1">Cook Dinner</label>
+      </li>
+      <li data-children-count="1">
+        <input type="checkbox" name="todo-5" id="todo-5">
+        <label for="todo-1">Study</label>
+      </li>
+    </ul>
+  </div>

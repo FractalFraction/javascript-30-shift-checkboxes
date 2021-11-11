@@ -1,0 +1,22 @@
+{
+  "name": "javascript-30-shift-checkboxes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FractalFraction/javascript-30-shift-checkboxes.git"
+  },
+  "author": "Colin Gardiner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FractalFraction/javascript-30-shift-checkboxes/issues"
+  },
+  "homepage": "https://github.com/FractalFraction/javascript-30-shift-checkboxes#readme",
+  "dependencies": {
+    "serve": "^13.0.2"
+  }
+}
