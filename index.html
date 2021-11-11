@@ -118,7 +118,6 @@
       if (bool){
           // Make associated label text have struckthrough text
           labels[index].style.textDecoration = 'line-through';
-          lastChecked = index;
         } else {
           // Make associated label have text decoration set to normal
           labels[index].style.textDecoration = 'none';
@@ -158,7 +157,6 @@
     // Checkboxes
     inputs.forEach((input, index) => {
       input.addEventListener('click', function(){
-        console.log(`${input.name} was clicked!`);
         // Toggles the checking
         checkmarkToggle(this.checked, index)
         // Do something if isMultipleChecks is true and another 
@@ -169,26 +167,24 @@
           getInputsChecked = Array.from(inputs).map(inputToBe => inputToBe.checked);
           console.log({getInputsChecked})
 
-          firstChecked = getInputsChecked.indexOf(true)
+          //firstChecked = getInputsChecked.indexOf(true)
+
+          console.log(index)
 
           // Inputs to change
-          inputsToChange = Array.from(inputs).slice(firstChecked + 1, lastChecked)
+
+          if (lastChecked < index){
+            inputsToChange = Array.from(inputs).slice(lastChecked + 1, index)
+          } else {
+            inputsToChange = Array.from(inputs).slice(index + 1, lastChecked)
+          }
+
+          //inputsToChange = Array.from(inputs).slice(firstChecked + 1, lastChecked)
 
           inputsToChange.forEach(input => input.checked = true)
 
-          console.log(inputsToChange)
-
-          console.log({firstChecked})
-          console.log({lastChecked})
-
-
-        } else {
-          console.log("Sorry, you need to have the shift key held down");
-        }
-
-        // Do another thing if isMultipleChecks is false
-        // i.e default behaviour
-
+        } 
+        lastChecked = index;
       });
     });
 
